@@ -18,7 +18,7 @@
     
     <p><label>Valor do processo (R$)</label>
     <input v-model="state.processo.amount" placeholder=""> 
-    <span v-if="v$.processo.amount.$error">O valor do processo deve ser maior que R$ 0,01 e menor que R$ 52482,55</span></p> 
+    <span v-if="v$.processo.amount.$error">O valor do processo deve ser maior que R$0,01 e menor que R$52482,55</span></p> 
     
     <label>Observações</label>
     <textarea v-model="state.processo.observations" placeholder="Insira qualquer informação importante relacionada a solicitação"></textarea>
@@ -86,7 +86,7 @@ export default {
           neighborhood: { required, minLength: minLength(2) }
                   },
         processo: {
-          amount: { required, minValue: minValue(0.01), maxValue: maxValue(52482.55), numeric }
+          amount: { required, minValue: minValue(0.01), maxValue: maxValue(52482.55) }
                   }
             }
     })
