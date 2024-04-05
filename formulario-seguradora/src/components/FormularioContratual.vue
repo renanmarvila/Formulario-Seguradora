@@ -81,7 +81,7 @@ export default {
         segurado: {
           name: { required, minLength: minLength(2) },
           document: { required, isValidCPF },
-          cep: { required, numeric },
+          cep: { required },
           street: { required, minLength: minLength(2) },
           neighborhood: { required, minLength: minLength(2) }
                   },

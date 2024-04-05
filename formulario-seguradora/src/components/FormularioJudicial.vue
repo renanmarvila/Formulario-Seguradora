@@ -77,7 +77,7 @@ export default {
         tomador: {
           name: { required, minLength: minLength(2) },
           document: { required, isValidCNPJ },
-          cep: { required, numeric },
+          cep: { required },
           street: { required, minLength: minLength(2) },
           neighborhood: { required, minLength: minLength(2) }
                   },
@@ -104,7 +104,7 @@ export default {
       } else {
         // Caso não tenha erros, o formulário será salvo e o cliente loggado
         const logObject = {
-            solicitation_type: "judicial",
+            solicitation_type: "contractual",
             policy_holder: {
               name: this.state.tomador.name,
               document: this.state.tomador.document,
