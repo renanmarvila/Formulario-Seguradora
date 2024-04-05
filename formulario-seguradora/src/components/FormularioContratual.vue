@@ -3,24 +3,24 @@
     <p><label>Nome completo:</label>
     <input v-model="state.segurado.name" placeholder="">
     <span v-if="v$.segurado.name.$error">O campo é obrigatório e deve conter NOME e SOBRENOME</span></p>
-    <p><label>Documento válido (CPF)</label>
+    <p><label>Documento válido (CPF):</label>
     <input v-model="state.segurado.document" placeholder="">
     <span v-if="v$.segurado.document.$error">Digite um CPF válido</span></p>
-    <p><label>CEP</label>
+    <p><label>CEP:</label>
     <input v-model="state.segurado.cep" @blur="handleCep" placeholder="">
     <span v-if="v$.segurado.cep.$error">O campo é obrigatório e deve conter mais de 2 caractéres</span></p>
-    <p><label>Rua</label>
+    <p><label>Rua:</label>
     <input v-model="state.segurado.street" placeholder="">
     <span v-if="v$.segurado.street.$error">O campo é obrigatório e deve conter mais de 2 caractéres</span></p>
     <p><label>Bairro:</label>
     <input v-model="state.segurado.neighborhood" placeholder="">
     <span v-if="v$.segurado.neighborhood.$error">O campo é obrigatório e deve conter mais de 2 caractéres</span></p>
     
-    <p><label>Valor do processo (R$)</label>
+    <p><label>Valor do processo (R$):</label>
     <input v-model="state.processo.amount" placeholder=""> 
     <span v-if="v$.processo.amount.$error">O valor do processo deve ser maior que R$0,01 e menor que R$52482,55</span></p> 
     
-    <label>Observações</label>
+    <label>Observações:</label>
     <textarea v-model="state.processo.observations" placeholder="Insira qualquer informação importante relacionada a solicitação"></textarea>
     <button @click="handleSubmit">Enviar</button>
   </div>
