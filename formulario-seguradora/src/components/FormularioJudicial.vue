@@ -28,7 +28,7 @@
   
 <script>
 
-import { required, minLength, minValue, maxValue, numeric, helpers } from '@vuelidate/validators'
+import { required, minLength, minValue, maxValue, numeric } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
 import { reactive, computed } from 'vue'
 
