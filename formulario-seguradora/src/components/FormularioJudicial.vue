@@ -2,7 +2,7 @@
   <div>
     <p><label>Nome completo:</label>
     <input v-model="state.tomador.name" placeholder="">
-    <span v-if="v$.tomador.name.$error">O campo é obrigatório e deve conter mais de 2 caractéres</span></p>
+    <span v-if="v$.tomador.name.$error">O campo é obrigatório e deve conter NOME e SOBRENOME</span></p>
     <p><label>Documento válido (CNPJ)</label>
     <input v-model="state.tomador.document" placeholder="">
     <span v-if="v$.tomador.document.$error">Digite um CNPJ válido</span></p>
@@ -32,6 +32,8 @@ import { required, minLength, minValue, maxValue, numeric } from '@vuelidate/val
 import useVuelidate from '@vuelidate/core'
 import { reactive, computed } from 'vue'
 
+// Funções para validar campos que não são direto pelo Vuelidate
+
 // Função para validar CNPJ - Testado 
 
 function isValidCNPJ(cnpj) {
@@ -55,6 +57,15 @@ function isValidCNPJ(cnpj) {
     return true
 }
 
+// Função para garantir que haja nome e sobrenome
+
+function hasLastName(value) {
+  if (!value) return false;
+  const names = value.split(' ');
+  if (names.length < 2) return false; // Pelo menos um nome e um sobrenome
+  const lastName = names.pop(); // Último nome
+  return lastName.length >= 1; // Sobrenome deve ter pelo menos 1 caractere
+}
 
 export default {
   setup () {
@@ -75,7 +86,7 @@ export default {
     const rules = computed(() => {
       return{
         tomador: {
-          name: { required, minLength: minLength(2) },
+          name: { required, minLength: minLength(2), hasLastName },
           document: { required, isValidCNPJ },
           cep: { required },
           street: { required, minLength: minLength(2) },

@@ -2,7 +2,7 @@
   <div>
     <p><label>Nome completo:</label>
     <input v-model="state.segurado.name" placeholder="">
-    <span v-if="v$.segurado.name.$error">O campo é obrigatório e deve conter mais de 2 caractéres</span></p>
+    <span v-if="v$.segurado.name.$error">O campo é obrigatório e deve conter NOME e SOBRENOME</span></p>
     <p><label>Documento válido (CPF)</label>
     <input v-model="state.segurado.document" placeholder="">
     <span v-if="v$.segurado.document.$error">Digite um CPF válido</span></p>
@@ -60,6 +60,16 @@ function isValidCPF(value) {
   return true;
 }
 
+// Função para garantir que haja nome e sobrenome
+
+function hasLastName(value) {
+  if (!value) return false;
+  const names = value.split(' ');
+  if (names.length < 2) return false; // Pelo menos um nome e um sobrenome
+  const lastName = names.pop(); // Último nome
+  return lastName.length >= 1; // Sobrenome deve ter pelo menos 1 caractere
+}
+
 export default {
   setup () {
     const state = reactive({
@@ -79,7 +89,7 @@ export default {
     const rules = computed(() => {
       return{
         segurado: {
-          name: { required, minLength: minLength(2) },
+          name: { required, minLength: minLength(2), hasLastName },
           document: { required, isValidCPF },
           cep: { required },
           street: { required, minLength: minLength(2) },
