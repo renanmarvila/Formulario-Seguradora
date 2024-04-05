@@ -108,7 +108,7 @@ export default {
       } else {
         // Caso não tenha erros, o formulário será salvo e o cliente loggado
         const logObject = {
-           solicitation_type: "judicial",
+           solicitation_type: "contractual",
             insured: {
               name: this.state.segurado.name,
               document: this.state.segurado.document,
